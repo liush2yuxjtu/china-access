@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { MetaHTMLAttributes } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -46,6 +47,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        {/* Impact.com matches the non-standard `value` attribute. Metadata `other` only emits `content`. */}
+        <meta
+          name="impact-site-verification"
+          {...({
+            value: "f674708d-6f01-43ba-9f90-656d1cf6e15a",
+          } as MetaHTMLAttributes<HTMLMetaElement>)}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-100">
         {children}
       </body>
