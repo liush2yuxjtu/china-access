@@ -4,7 +4,9 @@ English website that tracks whether **Chinese AI products** can be used **outsid
 
 Audience: developers and AI video creators who want a clear answer on overseas access, Chinese phone requirements, payment methods, and short how-tos.
 
-Live: [https://china-access.vercel.app](https://china-access.vercel.app)
+Live (Vercel): [https://china-access.vercel.app](https://china-access.vercel.app)
+
+Cloudflare Pages: deploy with static export (`out/`) — see **Deploy (Cloudflare Pages)** below.
 
 ## Stack
 
@@ -54,6 +56,39 @@ Each product has:
 
 Edit **`src/data/radar.ts`** — hand-written items for “This week in China AI”.
 
+
+## Deploy (Cloudflare Pages) — free static
+
+This app is a **static export** (`output: "export"` in `next.config.ts`). No Workers / OpenNext / paid plan required.
+
+| Setting | Value |
+| --- | --- |
+| Framework preset | Next.js (Static HTML Export) |
+| Build command | `npx next build` |
+| Build directory | `out` |
+| Node | 20+ |
+
+Local:
+
+```bash
+npm install
+npm run pages:build   # same as next build → out/
+# After Cloudflare login / API token:
+npx wrangler pages deploy out --project-name=china-access
+```
+
+Optional env (Pages → Settings → Environment variables), same as Vercel:
+
+| Name | Value |
+| --- | --- |
+| `NEXT_PUBLIC_BUTTONDOWN_FORM_ACTION` | Buttondown embed-subscribe URL (public; not a secret) |
+
+Must be set at **build** time for static export (baked into the client bundle).
+
+Custom domain: Pages → Custom domains → add e.g. `chinaaccess.dev` and follow DNS (CNAME to `china-access.pages.dev`). Free on Pages.
+
+Vercel can stay until the Cloudflare URL is verified; then pause or remove the Vercel project if desired.
+
 ## Newsletter (free tier)
 
 The signup form posts to a **public subscribe endpoint** when configured. No paid plan is required for a tiny weekly list.
@@ -65,7 +100,7 @@ Best fit for a small “China AI weekly radar” newsletter: purpose-built edito
 1. Create a free account at [https://buttondown.com](https://buttondown.com) (no card required for the free tier).
 2. Copy your embed-subscribe URL:
    `https://buttondown.com/api/emails/embed-subscribe/YOUR_USERNAME`
-3. In Vercel → Project → Settings → Environment Variables, add:
+3. In Cloudflare Pages (or Vercel) → Settings → Environment Variables, add (must exist at **build** time for static export):
 
    | Name | Value |
    | --- | --- |

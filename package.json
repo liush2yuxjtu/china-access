@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "pages:build": "next build",
+    "pages:deploy": "wrangler pages deploy out --project-name=china-access",
+    "pages:preview": "npx serve out"
   },
   "dependencies": {
     "next": "16.4.2",

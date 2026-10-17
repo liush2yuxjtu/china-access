@@ -1,0 +1,5 @@
+# Cloudflare Pages — static Next.js export
+# Deploy (after auth): npx wrangler pages deploy out --project-name=china-access
+name = "china-access"
+compatibility_date = "2026-10-17"
+pages_build_output_dir = "out"
