@@ -1,13 +1,30 @@
 "use client";
 
+import { track } from "@vercel/analytics";
 import { useMemo, useState } from "react";
 import {
   products,
   categoryLabel,
   type AccessStatus,
   type Category,
+  type Product,
 } from "@/data/products";
 import { StatusBadge } from "./StatusBadge";
+
+function destinationHost(url: string): string {
+  try {
+    return new URL(url).host;
+  } catch {
+    return url;
+  }
+}
+
+function trackProductOutbound(product: Pick<Product, "id" | "sourceUrl">) {
+  track("outbound_click", {
+    product_slug: product.id,
+    destination_host: destinationHost(product.sourceUrl),
+  });
+}
 
 const statuses: Array<AccessStatus | "all"> = [
   "all",
@@ -118,6 +135,7 @@ export function ProductTable() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-medium text-zinc-100 hover:text-sky-300"
+                    onClick={() => trackProductOutbound(p)}
                   >
                     {p.name}
                   </a>
@@ -167,6 +185,7 @@ export function ProductTable() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-semibold text-zinc-100 hover:text-sky-300"
+                  onClick={() => trackProductOutbound(p)}
                 >
                   {p.name}
                 </a>

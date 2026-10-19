@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { MetaHTMLAttributes } from "react";
+import { Analytics } from "@vercel/analytics/next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { siteDescription, siteName, siteTitle, siteUrl } from "@/lib/site";
 import "./globals.css";
@@ -66,6 +67,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-100">
         {children}
+        <Analytics />
       </body>
     </html>
   );
