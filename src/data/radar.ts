@@ -10,6 +10,24 @@ export interface RadarItem {
 /** Hand-written “This week in China AI” seed items (not auto-scraped). */
 export const radarItems: RadarItem[] = [
   {
+    id: "deepseek-v41-flash-1017",
+    date: "2026-10-17",
+    title: "DeepSeek V4.1-Flash-1017 and Search/Fetch API",
+    summary:
+      "deepseek-flash now points at DeepSeek-V4.1-Flash-1017. Search & Fetch is open at $0.75 per 1k successful calls; server-side tool calls via DeepSeek Harness, Claude Code, and Codex stay free until 2026-10-31 16:00 UTC. Changelog: https://api-docs.deepseek.com/updates",
+    tag: "LLM",
+    url: "https://api-docs.deepseek.com/news/news261017/",
+  },
+  {
+    id: "kling-4-mcp",
+    date: "2026-10-15",
+    title: "Kling 4.0 GA, with international MCP and CLI",
+    summary:
+      "Kling 4.0 is generally available (up to ~30s, multi-reference and keyframes). International accounts can use MCP at https://kling.ai/mcp and the CLI @klingai/cli-global; enterprise/developer REST API access is still marked coming soon. Guide: https://kling.ai/quickstart/kling-4-model-user-guide · Workflow: https://kling.ai/blog/kling-mcp-cinematic-performance-workflow",
+    tag: "Video",
+    url: "https://x.com/Kling_ai/status/2110747537187709424",
+  },
+  {
     id: "seedance-25",
     date: "2026-07-31",
     title: "Seedance 2.5 rolls out on Dreamina",
