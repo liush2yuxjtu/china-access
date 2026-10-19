@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import {
   products,
@@ -7,6 +8,7 @@ import {
   type AccessStatus,
   type Category,
 } from "@/data/products";
+import { productPath } from "@/lib/site";
 import { StatusBadge } from "./StatusBadge";
 
 const statuses: Array<AccessStatus | "all"> = [
@@ -113,15 +115,21 @@ export function ProductTable() {
             {filtered.map((p) => (
               <tr key={p.id} className="align-top hover:bg-zinc-900/50">
                 <td className="px-4 py-3">
+                  <Link
+                    href={productPath(p.id)}
+                    className="font-medium text-zinc-100 hover:text-sky-300"
+                  >
+                    {p.name}
+                  </Link>
+                  <div className="text-xs text-zinc-500">{p.company}</div>
                   <a
                     href={p.sourceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium text-zinc-100 hover:text-sky-300"
+                    className="text-xs text-sky-400/90 hover:text-sky-300"
                   >
-                    {p.name}
+                    Official site
                   </a>
-                  <div className="text-xs text-zinc-500">{p.company}</div>
                 </td>
                 <td className="px-4 py-3 text-zinc-300">
                   {categoryLabel[p.category]}
@@ -162,17 +170,23 @@ export function ProductTable() {
           >
             <div className="flex items-start justify-between gap-3">
               <div>
+                <Link
+                  href={productPath(p.id)}
+                  className="font-semibold text-zinc-100 hover:text-sky-300"
+                >
+                  {p.name}
+                </Link>
+                <p className="text-xs text-zinc-500">
+                  {p.company} · {categoryLabel[p.category]}
+                </p>
                 <a
                   href={p.sourceUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-semibold text-zinc-100 hover:text-sky-300"
+                  className="text-xs text-sky-400/90 hover:text-sky-300"
                 >
-                  {p.name}
+                  Official site
                 </a>
-                <p className="text-xs text-zinc-500">
-                  {p.company} · {categoryLabel[p.category]}
-                </p>
               </div>
               <StatusBadge status={p.status} />
             </div>

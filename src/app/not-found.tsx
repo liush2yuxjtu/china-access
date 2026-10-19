@@ -19,8 +19,8 @@ export default function NotFound() {
         Page not found
       </h1>
       <p className="mt-3 max-w-md text-sm leading-relaxed text-zinc-400">
-        This URL is not on China Access. The tracker, radar, and newsletter
-        all live on the homepage.
+        This URL is not on China Access. Open the homepage tracker to find a
+        product page.
       </p>
       <Link
         href="/"

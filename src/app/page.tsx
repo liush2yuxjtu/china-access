@@ -1,6 +1,7 @@
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { ProductTable } from "@/components/ProductTable";
 import { Radar } from "@/components/Radar";
+import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { products } from "@/data/products";
 import { siteDescription, siteName, siteUrl } from "@/lib/site";
 
@@ -41,27 +42,7 @@ export default function HomePage() {
           __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
         }}
       />
-      <header className="border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
-          <a href="/" className="flex items-center gap-2 font-semibold tracking-tight">
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-sky-500 text-sm font-bold text-zinc-950">
-              CA
-            </span>
-            <span>China Access</span>
-          </a>
-          <nav className="flex items-center gap-4 text-sm text-zinc-400">
-            <a href="#tracker" className="hover:text-zinc-100">
-              Tracker
-            </a>
-            <a href="#radar" className="hover:text-zinc-100">
-              Radar
-            </a>
-            <a href="#newsletter" className="hover:text-zinc-100">
-              Newsletter
-            </a>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main className="flex-1">
         <section className="relative overflow-hidden border-b border-zinc-800/80">
@@ -145,22 +126,7 @@ export default function HomePage() {
         </section>
       </main>
 
-      <footer className="border-t border-zinc-800/80">
-        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-8 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p>
-            © 2026 China Access · Independent tracker ·
-            Not affiliated with product vendors
-          </p>
-          <p>
-            <a
-              href="mailto:hello@chinaaccess.dev"
-              className="text-zinc-300 hover:text-sky-300"
-            >
-              Sponsor / list your product
-            </a>
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
