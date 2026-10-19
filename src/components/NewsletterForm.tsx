@@ -1,5 +1,6 @@
 "use client";
 
+import { track } from "@vercel/analytics";
 import { useState } from "react";
 
 /**
@@ -33,6 +34,7 @@ export function NewsletterForm() {
     function onSubmit(e: React.FormEvent) {
       e.preventDefault();
       if (!email.trim()) return;
+      track("newsletter_submit");
       setDone(true);
       setEmail("");
     }
@@ -81,6 +83,9 @@ export function NewsletterForm() {
       method="post"
       target="_blank"
       className="flex w-full flex-col gap-3 sm:flex-row sm:items-center"
+      onSubmit={() => {
+        track("newsletter_submit");
+      }}
     >
       <label htmlFor="newsletter-email" className="sr-only">
         Email

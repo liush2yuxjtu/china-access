@@ -9,6 +9,7 @@ import {
   type Category,
 } from "@/data/products";
 import { productPath } from "@/lib/site";
+import { OfficialLink } from "./OfficialLink";
 import { StatusBadge } from "./StatusBadge";
 
 const statuses: Array<AccessStatus | "all"> = [
@@ -122,14 +123,13 @@ export function ProductTable() {
                     {p.name}
                   </Link>
                   <div className="text-xs text-zinc-500">{p.company}</div>
-                  <a
+                  <OfficialLink
+                    slug={p.id}
                     href={p.sourceUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="text-xs text-sky-400/90 hover:text-sky-300"
                   >
                     Official site
-                  </a>
+                  </OfficialLink>
                 </td>
                 <td className="px-4 py-3 text-zinc-300">
                   {categoryLabel[p.category]}
@@ -179,14 +179,13 @@ export function ProductTable() {
                 <p className="text-xs text-zinc-500">
                   {p.company} · {categoryLabel[p.category]}
                 </p>
-                <a
+                <OfficialLink
+                  slug={p.id}
                   href={p.sourceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="text-xs text-sky-400/90 hover:text-sky-300"
                 >
                   Official site
-                </a>
+                </OfficialLink>
               </div>
               <StatusBadge status={p.status} />
             </div>

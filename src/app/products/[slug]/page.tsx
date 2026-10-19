@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { OfficialLink } from "@/components/OfficialLink";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { StatusBadge } from "@/components/StatusBadge";
 import { categoryLabel, products, statusLabel } from "@/data/products";
@@ -159,14 +160,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
           ) : null}
 
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            <a
+            <OfficialLink
+              slug={product.id}
               href={product.sourceUrl}
-              target="_blank"
-              rel="noopener noreferrer"
               className="rounded-full bg-sky-500 px-5 py-2.5 text-sm font-semibold text-zinc-950 hover:bg-sky-400"
             >
               Official site
-            </a>
+            </OfficialLink>
             <Link
               href="/#tracker"
               className="rounded-full border border-zinc-700 px-5 py-2.5 text-sm font-medium text-zinc-200 hover:border-zinc-500"
