@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import type { MetaHTMLAttributes } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
-import { siteDescription, siteName, siteTitle, siteUrl } from "@/lib/site";
+import {
+  ogImage,
+  siteDescription,
+  siteName,
+  siteTitle,
+  siteUrl,
+} from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -31,20 +37,13 @@ export const metadata: Metadata = {
     siteName,
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: "China Access — overseas tracker for Chinese AI products",
-      },
-    ],
+    images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
-    images: ["/og.png"],
+    images: [ogImage.url],
   },
   robots: { index: true, follow: true },
 };
