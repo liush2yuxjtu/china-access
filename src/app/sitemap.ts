@@ -1,12 +1,10 @@
 import type { MetadataRoute } from "next";
-import { siteUrl } from "@/lib/site";
+import { products } from "@/data/products";
+import { productUrl, siteUrl } from "@/lib/site";
 
 export const dynamic = "force-static";
 
-/**
- * Only routes that exist in the App Router. Product detail pages are not
- * public yet, so they are intentionally omitted.
- */
+/** Homepage plus one URL per product in `src/data/products.ts`. */
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
@@ -15,5 +13,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
+    ...products.map((product) => ({
+      url: productUrl(product.id),
+      lastModified: product.lastVerified,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
   ];
 }

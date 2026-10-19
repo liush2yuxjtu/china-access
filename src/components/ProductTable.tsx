@@ -1,30 +1,16 @@
 "use client";
 
-import { track } from "@vercel/analytics";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import {
   products,
   categoryLabel,
   type AccessStatus,
   type Category,
-  type Product,
 } from "@/data/products";
+import { productPath } from "@/lib/site";
+import { OfficialLink } from "./OfficialLink";
 import { StatusBadge } from "./StatusBadge";
-
-function destinationHost(url: string): string {
-  try {
-    return new URL(url).host;
-  } catch {
-    return url;
-  }
-}
-
-function trackProductOutbound(product: Pick<Product, "id" | "sourceUrl">) {
-  track("outbound_click", {
-    product_slug: product.id,
-    destination_host: destinationHost(product.sourceUrl),
-  });
-}
 
 const statuses: Array<AccessStatus | "all"> = [
   "all",
@@ -130,16 +116,20 @@ export function ProductTable() {
             {filtered.map((p) => (
               <tr key={p.id} className="align-top hover:bg-zinc-900/50">
                 <td className="px-4 py-3">
-                  <a
-                    href={p.sourceUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    href={productPath(p.id)}
                     className="font-medium text-zinc-100 hover:text-sky-300"
-                    onClick={() => trackProductOutbound(p)}
                   >
                     {p.name}
-                  </a>
+                  </Link>
                   <div className="text-xs text-zinc-500">{p.company}</div>
+                  <OfficialLink
+                    slug={p.id}
+                    href={p.sourceUrl}
+                    className="text-xs text-sky-400/90 hover:text-sky-300"
+                  >
+                    Official site
+                  </OfficialLink>
                 </td>
                 <td className="px-4 py-3 text-zinc-300">
                   {categoryLabel[p.category]}
@@ -180,18 +170,22 @@ export function ProductTable() {
           >
             <div className="flex items-start justify-between gap-3">
               <div>
-                <a
-                  href={p.sourceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href={productPath(p.id)}
                   className="font-semibold text-zinc-100 hover:text-sky-300"
-                  onClick={() => trackProductOutbound(p)}
                 >
                   {p.name}
-                </a>
+                </Link>
                 <p className="text-xs text-zinc-500">
                   {p.company} · {categoryLabel[p.category]}
                 </p>
+                <OfficialLink
+                  slug={p.id}
+                  href={p.sourceUrl}
+                  className="text-xs text-sky-400/90 hover:text-sky-300"
+                >
+                  Official site
+                </OfficialLink>
               </div>
               <StatusBadge status={p.status} />
             </div>
