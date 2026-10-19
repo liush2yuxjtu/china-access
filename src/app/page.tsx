@@ -2,6 +2,30 @@ import { NewsletterForm } from "@/components/NewsletterForm";
 import { ProductTable } from "@/components/ProductTable";
 import { Radar } from "@/components/Radar";
 import { products } from "@/data/products";
+import { siteDescription, siteName, siteUrl } from "@/lib/site";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      name: siteName,
+      url: siteUrl,
+      description: siteDescription,
+      inLanguage: "en",
+      publisher: { "@id": `${siteUrl}/#organization` },
+    },
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: siteName,
+      url: siteUrl,
+      email: "hello@chinaaccess.dev",
+      description: siteDescription,
+    },
+  ],
+};
 
 const available = products.filter((p) => p.status === "available").length;
 const restricted = products.filter((p) => p.status === "restricted").length;
@@ -11,6 +35,12 @@ const unknown = products.filter((p) => p.status === "unknown").length;
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <header className="border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
           <a href="/" className="flex items-center gap-2 font-semibold tracking-tight">
