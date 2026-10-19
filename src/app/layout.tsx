@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { MetaHTMLAttributes } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
+import { siteDescription, siteName, siteTitle, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,30 +14,37 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = "https://china-access.vercel.app";
-
 export const metadata: Metadata = {
   title: {
-    default: "China Access — Overseas tracker for Chinese AI products",
-    template: "%s · China Access",
+    default: siteTitle,
+    template: `%s · ${siteName}`,
   },
-  description:
-    "Can you use Chinese AI products outside China? Track Kling, Hailuo, Qwen, DeepSeek, Seedance, and more — access status, payment, and tips for developers and creators.",
+  description: siteDescription,
   metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "China Access — Overseas tracker for Chinese AI products",
-    description:
-      "English tracker of whether Chinese AI video, LLM, image, and agent products work outside China.",
+    title: siteTitle,
+    description: siteDescription,
     url: siteUrl,
-    siteName: "China Access",
+    siteName,
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "China Access — overseas tracker for Chinese AI products",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "China Access — Overseas tracker for Chinese AI products",
-    description:
-      "Track overseas access, payment methods, and tips for Chinese AI products.",
+    title: siteTitle,
+    description: siteDescription,
+    images: ["/og.png"],
   },
   robots: { index: true, follow: true },
 };
