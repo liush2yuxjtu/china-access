@@ -18,7 +18,7 @@ export interface Product {
 
 /**
  * Seed data for China Access tracker.
- * lastVerified: 2026-10-17
+ * lastVerified: 2026-10-17 for most rows; DeepSeek and Kling rechecked 2026-10-19.
  * Rule: never invent access facts — mark unknown when unsure.
  */
 export const products: Product[] = [
@@ -31,9 +31,11 @@ export const products: Product[] = [
     needsChinesePhone: "no",
     paymentOverseas: "International cards (USD via Stripe); Google/Apple SSO",
     pricingNotes: "Separate CN (klingai.com) and intl (kling.ai) accounts & credits — not interchangeable",
-    lastVerified: "2026-10-17",
+    lastVerified: "2026-10-19",
     sourceUrl: "https://kling.ai",
-    tip: "Use kling.ai (intl). Avoid signing up on the mainland portal if you need overseas billing.",
+    tip: "Use kling.ai (intl). Kling 4.0 is GA (up to ~30s, multi-ref/keyframes) via MCP at https://kling.ai/mcp or CLI @klingai/cli-global. Avoid the mainland portal if you need overseas billing.",
+    notes:
+      "Enterprise/developer REST API for Kling 4.0 is still marked coming soon. MCP and the global CLI are the open agent paths.",
   },
   {
     id: "hailuo",
@@ -160,10 +162,11 @@ export const products: Product[] = [
     status: "restricted",
     needsChinesePhone: "sometimes",
     paymentOverseas: "Official top-up often Alipay/WeChat/UnionPay; gateways accept intl cards",
-    pricingNotes: "API endpoint reachable globally if you have a key; account funding is the common overseas friction. Open weights widely available",
-    lastVerified: "2026-10-17",
+    pricingNotes:
+      "deepseek-flash now serves DeepSeek-V4.1-Flash-1017. Search & Fetch API is $0.75 per 1k successful calls; server-side tool calls via DeepSeek Harness, Claude Code, and Codex are free until 2026-10-31 16:00 UTC. API reachable globally with a key; account funding is the common overseas friction. Open weights widely available",
+    lastVerified: "2026-10-19",
     sourceUrl: "https://www.deepseek.com",
-    tip: "Chat may work with email; for API, verify live signup. Many teams use open weights or OpenAI-compatible gateways when official billing fails.",
+    tip: "Chat may work with email; for API, verify live signup. Search & Fetch docs: https://api-docs.deepseek.com/guides/search. Many teams use open weights or OpenAI-compatible gateways when official billing fails.",
     notes: "Sources disagree on whether official platform always requires a +86 number — treat payment/phone as the risk and verify yourself.",
   },
   {
